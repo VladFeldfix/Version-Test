@@ -128,13 +128,13 @@ class main:
     def log_error(self, text):
         self.errors += 1
         self.sc.error(text)
-        self.log.append("[-] "+text)
+        self.log.append("[X] "+text)
     
     def save_log(self):
         file = open("log.txt", "w", encoding="utf-8")
         for line in self.log:
             file.write(line+"\n")
-        file.write("Found: "+str(self.errors)+" errors (search for [-] to see them)")
+        file.write("Found: "+str(self.errors)+" errors (search for [-] or [X] to see them)")
         file.close()
         os.popen("log.txt")
 main()
