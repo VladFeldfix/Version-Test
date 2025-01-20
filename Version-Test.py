@@ -63,8 +63,8 @@ class main:
                             if not same:
                                 self.print("  [X] "+dst_filename+" was changed",'red')
                                 self.display_changes(scr,dst)
-                                if self.sc.question("Save changes?"):
-                                    shutil.copy(scr, dst)
+                                #if self.sc.question("Save changes?"):
+                                shutil.copy(scr, dst)
                             else:
                                 self.print("  [+] "+dst_filename+" no changes",'green')
         
