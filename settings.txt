@@ -1,3 +1,3 @@
-Projects > D:\Users\Vlad\Projects\Applications
-Backups > D:\Users\Vlad\Projects\.Backups
-Logs > D:\Users\Vlad\Documents\Applications_logs
+Projects > C:\Users\mig_rprod\Desktop\Tools
+Backups > C:\Users\mig_rprod\Documents\.backups
+Logs > C:\Users\mig_rprod\Documents\.backups\.logs

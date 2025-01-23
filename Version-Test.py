@@ -8,7 +8,7 @@ class main:
     # constructor
     def __init__(self):
         # load smart console
-        self.sc = SmartConsole("Version-Test", "2.0")
+        self.sc = SmartConsole("Version-Test", "2.1")
         
         # set-up main memu
         self.sc.add_main_menu_item("RUN", self.run)
@@ -30,7 +30,14 @@ class main:
     def run(self):
         # create database
         self.sc.print("PROCESSING...")
+        lof_path = self.logs_location+"/list_of_files.txt" # list of files
+        lof_file = open(lof_path,'a',encoding='utf-8')
+        lof_file.close()
+        lof_file = open(lof_path,'r',encoding='utf-8')
+        lof_lines = lof_file.readlines()
+        lof_file.close()
         projects = []
+        existing_files = []
         for root, dirs, files in os.walk(self.projects):
             for file in files:
                 path = root+"/"+file
@@ -46,6 +53,7 @@ class main:
                             self.print("\n"+project+":","white")
                         file_in_project = "/".join(filename[2:])
                         file_in_project = file_in_project.replace("/", " + ")
+                        existing_files.append(project+"/"+"/".join(filename[2:])+"\n")
                         
                         # create a copy of the projects in my tmp folder
                         if not os.path.isdir(self.backup+"/"+project):
@@ -58,6 +66,7 @@ class main:
                         if not os.path.isfile(dst):
                             shutil.copy(scr, dst)
                             self.print("  [+] "+dst_filename+" was created",'yellow')
+                            lof_lines.append(project+"/"+"/".join(filename[2:])+"\n")
                         else:
                             same = self.compare_files(scr,dst)
                             if not same:
@@ -67,7 +76,24 @@ class main:
                                 shutil.copy(scr, dst)
                             else:
                                 self.print("  [+] "+dst_filename+" no changes",'green')
-        
+
+        # display deleted files
+        self.print("",'white')
+        self.print("DELETED FILES:",'white')
+        none = " - None - "
+        for file in lof_lines:
+            if not file in existing_files:
+                self.print(" "+file,'red')
+                del lof_lines[lof_lines.index(file)]
+                none = ""
+        self.print(none,'white')
+
+        # save lof
+        lof_file = open(lof_path,'w',encoding='utf-8')
+        for file in lof_lines:
+            lof_file.write(file)
+        lof_file.close()
+
         # save log
         self.save_log()
 
