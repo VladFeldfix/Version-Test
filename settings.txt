@@ -1,3 +1,3 @@
-Projects > D:\Users\Vlad\Projects/applications
-Backups > D:\Users\Vlad\Projects\.Backups
-Logs > D:\Users\Vlad\Projects\.Backups\.change_logs
+Projects > C:\Users\migvlfel\OneDrive - Flex\Desktop\Apps
+Backups > C:\Users\migvlfel\OneDrive - Flex\Documents\.Backups
+Logs > C:\Users\migvlfel\OneDrive - Flex\Documents\.Backups\.Change Logs
